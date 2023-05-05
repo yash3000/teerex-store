@@ -1,0 +1,9 @@
+.filter-label {
+    margin: 16px 0px 0px !important;
+}
+
+.filter-container {
+    padding-inline: 1.5rem !important;
+    padding-bottom: 1.5rem;
+    box-shadow: 0 0 8px #a3a0a0;
+}
