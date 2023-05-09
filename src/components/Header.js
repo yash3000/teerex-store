@@ -24,10 +24,11 @@ const Header = ({ hideCartDetail, showCart, totalQuantity }) => {
         >
           Cart <AddShoppingCartOutlined sx={{ ml: 1 }} />
         </Button>
-        {totalQuantity && (totalQuantity !== 0) &&
-          <div className="cart-totalQuantity">
-            {totalQuantity ? totalQuantity: ""}
-          </div>
+        {totalQuantity && (totalQuantity !== 0) ?
+          (<div className="cart-totalQuantity">
+            {totalQuantity}
+          </div>)
+          :(<></>)
         }
       </Stack>
     </Box>
