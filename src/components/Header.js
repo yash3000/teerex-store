@@ -19,16 +19,16 @@ const Header = ({ hideCartDetail, showCart, totalQuantity }) => {
         </Button>
         <Button
           variant="contained"
-          sx={{backgroundColor:"primary"}}
+          sx={{ backgroundColor: "primary" }}
           onClick={showCart}
         >
-          Cart <AddShoppingCartOutlined sx={{ml:1}}/>
+          Cart <AddShoppingCartOutlined sx={{ ml: 1 }} />
         </Button>
-        {totalQuantity && <div
-        className="cart-totalQuantity"
-        >
-        {totalQuantity}
-        </div>}
+        {(totalQuantity !== 0) &&
+          <div className="cart-totalQuantity">
+            {totalQuantity ? totalQuantity: ""}
+          </div>
+        }
       </Stack>
     </Box>
   );
