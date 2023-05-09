@@ -36,8 +36,3 @@ const Header = ({ hideCartDetail, showCart, totalQuantity }) => {
 };
 
 export default Header;
-
-//Not sure of onClick callback function provided to "Back to explore" BTN;
-
-//Error after Login API successfully loads the products page -
-//index.js:1 Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
