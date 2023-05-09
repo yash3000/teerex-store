@@ -61,15 +61,20 @@ const Cart = ({ cartDetails, setCartDetailsAndUpload, productDetails }) => {
 
   const [cartItemsWithProductDetails, setCartItemsWithProductDetails] = useState(generateCartItemsFrom(cartItems, productDetails));
 
-  const handleQuantity = (id, quantity, maxQuantity) => {
+  const handleQuantity = (id, quantity, maxQuantity, type) => {
     if (quantity < maxQuantity) {
       var cart = JSON.parse(JSON.stringify(cartDetails));
       let product = cart.cartItems.find((cartItem) => {
         return cartItem.productId === id;
       });
-      product.quantity += 1;
-      cart.totalPrice += product.productPrice;
-      cart.totalQuantity += 1;
+      product.quantity = quantity;
+      if(product.quantity === 0){
+        cart.cartItems = cart.cartItems.filter(function(cartItem){
+          return cartItem.productId !== id
+        });
+      }
+      cart.totalPrice = type === "increase" ? cart.totalPrice+product.productPrice : cart.totalPrice-product.productPrice;
+      cart.totalQuantity = type === "increase" ? cart.totalQuantity+1 : cart.totalQuantity-1;
       setCartDetailsAndUpload(cart);
       setCartItemsWithProductDetails(generateCartItemsFrom(cart.cartItems, productDetails))
     } else {
@@ -147,10 +152,10 @@ const Cart = ({ cartDetails, setCartDetailsAndUpload, productDetails }) => {
                   // Add required props by checking implementation
                   value={item.quantity}
                   handleAdd={() =>
-                    handleQuantity(item.productId, item.quantity + 1, item.maxQuantity)
+                    handleQuantity(item.productId, item.quantity + 1, item.maxQuantity, "increase")
                   }
                   handleDelete={() =>
-                    handleQuantity(item.productId, item.quantity - 1, item.maxQuantity)
+                    handleQuantity(item.productId, item.quantity - 1, item.maxQuantity, "decrease")
                   }
                 />
                 <Box padding="0.5rem" fontWeight="700">
